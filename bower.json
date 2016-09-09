@@ -1,0 +1,20 @@
+{
+  "name": "salaries",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Katie Siegel <ksiegel@mit.edu>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/kathrynsiegel/new-grad-salaries",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-css": "^3.3.6"
+  }
+}
