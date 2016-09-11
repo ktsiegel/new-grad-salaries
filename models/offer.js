@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var offerSchema = mongoose.Schema({
+var OfferSchema = mongoose.Schema({
   university: String,
   ethnicity: String,
   gender: String,
@@ -14,6 +14,6 @@ var offerSchema = mongoose.Schema({
   companyLocation: String
 });
 
-var Offer = mongoose.model('Offer', offerSchema);
+var Offer = mongoose.model('Offer', OfferSchema);
 
 module.exports = Offer
