@@ -14,3 +14,19 @@ a {
 #take-survey-btn {
   margin-top: 8px;
 }
+
+#login-with-fb-btn {
+  color: #fff;
+  background-color: #3B5998;
+  width: 100%;
+}
+
+.center-align {
+  width: 200px;
+  position: relative;
+  margin: auto;
+}
+
+p.p-modal {
+  margin: 10px;
+}

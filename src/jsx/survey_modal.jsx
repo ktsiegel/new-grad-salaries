@@ -21,7 +21,17 @@ var SurveyModal = React.createClass({
           </Modal.Header>
 
           <Modal.Body>
-            Contribute to this project by adding your own new-grad salary data.
+            <p className="p-modal">
+              Contribute to this project by adding your own new-grad salary data.
+            </p>
+            <div className="center-align">
+              <a href="/auth/facebook">
+                <Button id="login-with-fb-btn">Continue with Facebook</Button>
+              </a>
+            </div>
+            <p className="p-modal">
+              Note: Facebook authentication is used to prevent duplicate responses. Your identification information will never be shown in association with your survey response.
+            </p>
           </Modal.Body>
 
           <Modal.Footer>

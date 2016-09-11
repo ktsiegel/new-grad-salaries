@@ -21,4 +21,5 @@ gulp.task("copy", ["bundle"], function () {
 
 gulp.task("default",["copy"], function(){
     gulp.watch("./src/jsx/*.jsx", ["bundle"]);
+    gulp.watch("./src/css/style.css", ["copy"]);
 });
