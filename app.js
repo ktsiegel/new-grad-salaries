@@ -21,7 +21,8 @@ if (app.get('env') === 'development') {
   passport.use(new FacebookStrategy({
     clientID: config['development'].FACEBOOK_APP_ID,
     clientSecret: config['development'].FACEBOOK_APP_SECRET,
-    callbackURL: "http://localhost:3000/auth/facebook/callback"
+    callbackURL: "http://localhost:3000/auth/facebook/callback",
+    profileFields: ['id', 'displayName', 'email']
   },
   function(accessToken, refreshToken, profile, cb) {
     User.findOrCreate({ facebookId: profile.id, email: profile.email }, function (err, user) {
@@ -41,6 +42,7 @@ passport.deserializeUser(function(obj, cb) {
     cb(null, obj);
 });
 
+app.use(require('express-session')({ secret: config['APP_SECRET'], resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 

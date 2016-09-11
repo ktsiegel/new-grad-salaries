@@ -21,7 +21,7 @@ router.get('/auth/facebook/callback',
   });
 
 router.get('/auth', function(req, res, next) {
-  if (req.isAuthenticated) {
+  if (req.isAuthenticated()) {
     res.json({authenticated: true});
   } else {
     res.json({authenticated: false});
