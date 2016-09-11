@@ -26,7 +26,10 @@ var SurveyModal = React.createClass({
             </p>
             <div className="center-align">
               <a href="/auth/facebook">
-                <Button id="login-with-fb-btn">Continue with Facebook</Button>
+                <Button id="login-with-fb-btn">
+                  <i className="fa fa-facebook-official" aria-hidden="true"></i>
+                  Continue with Facebook
+                </Button>
               </a>
             </div>
             <p className="p-modal">

@@ -19,14 +19,22 @@ a {
   color: #fff;
   background-color: #3B5998;
   width: 100%;
+  height: 100%;
+  font-size: 18px;
 }
 
 .center-align {
-  width: 200px;
+  width: 260px;
+  height: 50px;
   position: relative;
   margin: auto;
 }
 
 p.p-modal {
   margin: 10px;
+}
+
+.fa.fa-facebook-official {
+  font-size: 20px;
+  margin-right: 10px;
 }
