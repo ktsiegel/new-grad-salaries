@@ -12,6 +12,16 @@ var Container = React.createClass({
     };
   },
 
+  componentDidMount: function() {
+    console.log("here");
+    this.serverRequest = $.get("/auth", function (res) {
+      console.log(res);
+      this.setState({
+        isAuthenticated: res.authenticated
+      });
+    }.bind(this));
+  },
+
   showSurveyModal: function() {
     this.setState({showSurvey: true});
   },

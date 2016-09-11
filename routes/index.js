@@ -4,7 +4,10 @@ var passport = require('passport');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'New-Grad Salaries' });
+  var pageInfo = {
+    title: 'New-Grad Salaries'
+  };
+  res.render('index', pageInfo);
 });
 
 router.get('/auth/facebook',
@@ -16,5 +19,14 @@ router.get('/auth/facebook/callback',
     // Successful authentication, redirect home.
     res.redirect('/');
   });
+
+router.get('/auth', function(req, res, next) {
+  if (req.isAuthenticated) {
+    res.json({authenticated: true});
+  } else {
+    res.json({authenticated: false});
+  }
+});
+
 
 module.exports = router;
