@@ -8,37 +8,45 @@ var SurveyModal = React.createClass({
     isAuthenticated: React.PropTypes.bool.isRequired
   },
 
-  render: function() {
-    let submitButton;
-    if (this.props.isAuthenticated) {
-      submitButton = (<Button bsStyle="primary">Save changes</Button>);
-    }
-    var modalContent = (
+  renderAuthModalBody: function() {
+    return (<Modal.Body>
+      <p className="p-modal">
+        Contribute to this project by adding your own new-grad salary data.
+      </p>
+      <div className="center-align">
+        <a href="/auth/facebook">
+          <Button id="login-with-fb-btn">
+            <i className="fa fa-facebook-official" aria-hidden="true"></i>
+            Continue with Facebook
+          </Button>
+        </a>
+      </div>
+      <p className="p-modal">
+        Note: Facebook authentication is used to prevent duplicate responses. Your identification information will never be shown in association with your survey response.
+      </p>
+    </Modal.Body>);
+  },
+
+  renderSurveyModalBody: function() {
+    return (
       <Modal.Body>
         <p className="p-modal">
-          Contribute to this project by adding your own new-grad salary data.
-        </p>
-        <div className="center-align">
-          <a href="/auth/facebook">
-            <Button id="login-with-fb-btn">
-              <i className="fa fa-facebook-official" aria-hidden="true"></i>
-              Continue with Facebook
-            </Button>
-          </a>
-        </div>
-        <p className="p-modal">
-          Note: Facebook authentication is used to prevent duplicate responses. Your identification information will never be shown in association with your survey response.
+          Take the survey
         </p>
       </Modal.Body>
     );
+  },
+
+  render: function() {
+    var submitButton;
     if (this.props.isAuthenticated) {
-      modalContent = (
-        <Modal.Body>
-          <p className="p-modal">
-            Take the survey
-          </p>
-        </Modal.Body>
-      );
+      submitButton = (<Button bsStyle="primary">Submit</Button>);
+    }
+    var modalContent;
+    if (this.props.isAuthenticated) {
+      modalContent = this.renderSurveyModalBody();
+    } else {
+      modalContent = this.renderAuthModalBody();
     }
 
     const modalInstance = (
@@ -50,6 +58,7 @@ var SurveyModal = React.createClass({
           {modalContent}
           <Modal.Footer>
             <Button onClick={this.props.hideSurvey}>Close</Button>
+            {submitButton}
           </Modal.Footer>
 
         </Modal.Dialog>
