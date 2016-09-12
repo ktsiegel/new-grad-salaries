@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
   var pageInfo = {
     title: 'New-Grad Salaries'
@@ -17,15 +16,17 @@ router.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/' }),
   function(req, res) {
     // Successful authentication, redirect home.
+    req.session.recentAuth = true;
     res.redirect('/');
   });
 
 router.get('/auth', function(req, res, next) {
-  if (req.isAuthenticated()) {
-    res.json({authenticated: true});
-  } else {
-    res.json({authenticated: false});
-  }
+  var recentAuth = req.session.recentAuth;
+  req.session.recentAuth = null;
+  res.json({
+    isAuthenticated: req.isAuthenticated(),
+    showSurvey: recentAuth
+  });
 });
 
 
