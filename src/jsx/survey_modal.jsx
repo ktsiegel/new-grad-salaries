@@ -1,6 +1,7 @@
 var React = require("react");
 var Modal = require("react-bootstrap").Modal;
 var Button = require("react-bootstrap").Button;
+var SurveyContent = require("./survey_content.jsx");
 
 var SurveyModal = React.createClass({
   propTypes: {
@@ -30,9 +31,7 @@ var SurveyModal = React.createClass({
   renderSurveyModalBody: function() {
     return (
       <Modal.Body>
-        <p className="p-modal">
-          Take the survey
-        </p>
+        <SurveyContent/>
       </Modal.Body>
     );
   },

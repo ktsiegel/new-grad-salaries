@@ -4,13 +4,13 @@ var OfferSchema = mongoose.Schema({
   university: String,
   ethnicity: String,
   gender: String,
+  company: String,
   companyType: String,
-  positionType: String,
+  position: String,
   baseSalary: Number,
   signingBonus: Number,
   equityPercent: Number,
   equityAmount: Number,
-  projectedBonus: Number,
   companyLocation: String
 });
 

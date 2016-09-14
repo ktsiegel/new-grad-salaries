@@ -38,3 +38,21 @@ p.p-modal {
   font-size: 20px;
   margin-right: 10px;
 }
+
+#ethnicity-dropdown, #gender-dropdown, #company-type-dropdown, #location-dropdown {
+  width: 100%;
+  text-align: right;
+}
+
+.dropdown.btn-group {
+  width: 100%;
+}
+
+.dropdown-menu {
+  width: 100%;
+}
+
+.modal .modal-body {
+  max-height: calc(100vh - 225px);
+  overflow-y: auto;
+}
