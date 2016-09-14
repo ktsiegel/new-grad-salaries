@@ -1,8 +1,8 @@
-var React = require("react");
-var ReactDOM = require("react-dom");
-var SurveyModal = require("./components/survey_modal.jsx");
-var DataDisplay = require("./components/data_display.jsx");
-var Button = require("react-bootstrap").Button;
+var React = require('react');
+var ReactDOM = require('react-dom');
+var SurveyModal = require('./components/survey_modal.jsx');
+var DataDisplay = require('./components/data_display.jsx');
+var Button = require('react-bootstrap').Button;
 
 var Container = React.createClass({
   getInitialState: function() {
@@ -13,7 +13,7 @@ var Container = React.createClass({
   },
 
   componentDidMount: function() {
-    this.serverRequest = $.get("/auth", function (res) {
+    this.serverRequest = $.get('/auth', function (res) {
       this.setState({
         isAuthenticated: res.isAuthenticated,
         showSurvey: res.showSurvey
@@ -36,14 +36,14 @@ var Container = React.createClass({
     }
     return(
       <div>
-        <div className="navbar navbar-default">
-          <div className="container-fluid">
-            <div className="navbar-header">
-              <a className="navbar-brand" href="#">New-Grad Salaries</a>
+        <div className='navbar navbar-default'>
+          <div className='container-fluid'>
+            <div className='navbar-header'>
+              <a className='navbar-brand' href='#'>New-Grad Salaries</a>
             </div>
-            <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul className="nav navbar-nav navbar-right">
-                <li><Button onClick={this.showSurveyModal} id="take-survey-btn">Submit Data</Button></li>
+            <div className='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
+              <ul className='nav navbar-nav navbar-right'>
+                <li><Button onClick={this.showSurveyModal} id='take-survey-btn'>Submit Data</Button></li>
               </ul>
             </div>
           </div>
@@ -56,6 +56,6 @@ var Container = React.createClass({
 });
 
 function render(){
-  ReactDOM.render(<Container />, document.getElementById("container"));    
+  ReactDOM.render(<Container />, document.getElementById('container'));    
 }
 render();

@@ -1,7 +1,7 @@
-var React = require("react");
-var Modal = require("react-bootstrap").Modal;
-var Button = require("react-bootstrap").Button;
-var SurveyContent = require("./survey_content.jsx");
+var React = require('react');
+var Modal = require('react-bootstrap').Modal;
+var Button = require('react-bootstrap').Button;
+var SurveyContent = require('./survey_content.jsx');
 
 var SurveyModal = React.createClass({
   propTypes: {
@@ -11,18 +11,18 @@ var SurveyModal = React.createClass({
 
   renderAuthModalBody: function() {
     return (<Modal.Body>
-      <p className="p-modal">
+      <p className='p-modal'>
         Contribute to this project by adding your own new-grad salary data.
       </p>
-      <div className="center-align">
-        <a href="/auth/facebook">
-          <Button id="login-with-fb-btn">
-            <i className="fa fa-facebook-official" aria-hidden="true"></i>
+      <div className='center-align'>
+        <a href='/auth/facebook'>
+          <Button id='login-with-fb-btn'>
+            <i className='fa fa-facebook-official' aria-hidden='true'></i>
             Continue with Facebook
           </Button>
         </a>
       </div>
-      <p className="p-modal">
+      <p className='p-modal'>
         Note: Facebook authentication is used to prevent duplicate responses. Your identification information will never be shown in association with your survey response.
       </p>
     </Modal.Body>);
@@ -39,7 +39,7 @@ var SurveyModal = React.createClass({
   render: function() {
     var submitButton;
     if (this.props.isAuthenticated) {
-      submitButton = (<Button bsStyle="primary">Submit</Button>);
+      submitButton = (<Button bsStyle='primary'>Submit</Button>);
     }
     var modalContent;
     if (this.props.isAuthenticated) {
@@ -49,7 +49,7 @@ var SurveyModal = React.createClass({
     }
 
     const modalInstance = (
-      <div className="static-modal">
+      <div className='static-modal'>
         <Modal.Dialog>
           <Modal.Header>
             <Modal.Title>Take the survey!</Modal.Title>
