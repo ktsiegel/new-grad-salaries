@@ -1,5 +1,5 @@
 var React = require("react");
-var OfferInfo = require("./helpers/offer.jsx");
+var OfferInfo = require("../helpers/offer.jsx");
 var Bootstrap = require("react-bootstrap");
 var FormGroup = Bootstrap.FormGroup;
 var ControlLabel = Bootstrap.ControlLabel;

@@ -1,7 +1,7 @@
 var React = require("react");
 var ReactDOM = require("react-dom");
-var SurveyModal = require("./survey_modal.jsx");
-var DataDisplay = require("./data_display.jsx");
+var SurveyModal = require("./components/survey_modal.jsx");
+var DataDisplay = require("./components/data_display.jsx");
 var Button = require("react-bootstrap").Button;
 
 var Container = React.createClass({
