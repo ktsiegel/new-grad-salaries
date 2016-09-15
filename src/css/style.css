@@ -39,7 +39,7 @@ p.p-modal {
   margin-right: 10px;
 }
 
-#ethnicity-dropdown, #gender-dropdown, #company-type-dropdown, #location-dropdown {
+#ethnicity-dropdown, #gender-dropdown, #companytype-dropdown, #location-dropdown {
   width: 100%;
   text-align: right;
 }
