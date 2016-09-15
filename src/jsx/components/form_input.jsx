@@ -4,10 +4,10 @@ var FormGroup = Bootstrap.FormGroup;
 var ControlLabel = Bootstrap.ControlLabel;
 var FormControl = Bootstrap.FormControl;
 
-
 var FormInput = React.createClass({
   propTypes: {
-    label: React.PropTypes.string.isRequired
+    label: React.PropTypes.string.isRequired,
+    onChange: React.PropTypes.func.isRequired
   },
 
   getInitialState: function() {
@@ -18,6 +18,7 @@ var FormInput = React.createClass({
 
   handleChange(e) {
     this.setState({ value: e.target.value });
+    this.props.onChange(e.target.value);
   },
 
   render: function() {
