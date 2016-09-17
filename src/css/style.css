@@ -30,6 +30,10 @@ a {
   margin: auto;
 }
 
+.input-group {
+  width: 100%;
+}
+
 p.p-modal {
   margin: 10px;
 }
@@ -41,7 +45,11 @@ p.p-modal {
 
 #ethnicity-dropdown, #gender-dropdown, #companytype-dropdown, #location-dropdown {
   width: 100%;
-  text-align: right;
+  text-align: left;
+}
+
+.dropdown-toggle {
+  height:34px;
 }
 
 .dropdown.btn-group {
@@ -55,4 +63,12 @@ p.p-modal {
 .modal .modal-body {
   max-height: calc(100vh - 225px);
   overflow-y: auto;
+}
+
+.dropdown-error {
+  border-color: #a94442 !important;
+}
+
+.error-color {
+  color: #a94442 !important;
 }

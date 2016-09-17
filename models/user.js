@@ -1,13 +1,18 @@
 var mongoose = require('mongoose');
+var Offer = require('./offer');
 
 var UserSchema = mongoose.Schema({
   facebookId: String,
-  email: String
+  email: String,
+  offer: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Offer'
+  }
 });
 
 UserSchema.statics.findOrCreate = function(userInfo, cb) {
   var that = this;
-  var query  = that.where(userInfo);
+  var query = that.where(userInfo);
   query.findOne(function (err, user) {
     if (err) {
       cb(err, null);
