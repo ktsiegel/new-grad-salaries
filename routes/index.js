@@ -82,4 +82,61 @@ router.post('/submit', function(req, res, next) {
   }
 });
 
+router.get('/averages', function(req, res, next) {
+  params = {};
+  if (req.body.ethnicity) {
+    params['ethnicity'] = req.body.ethnicity;
+  }
+  if (req.body.gender) {
+    params['gender'] = req.body.gender;
+  }
+  if (req.body.companyType) {
+    params['companyType'] = req.body.companyType;
+  }
+  if (req.body.location) {
+    params['companyLocation'] = req.body.location;
+  }
+  Offer.find(params, function(err, docs) {
+    if (err) {
+      res.send({
+        status: 'error',
+        message: 'Server error.'
+      });
+    } else if (docs.length < 10) {
+      res.send({
+        status: 'success',
+        message: 'Not enough data.'
+      });
+    } else {
+      var baseSalarySum = 0;
+      var equityAmountSum = 0;
+      var equityAmountCount = 0;
+      var equityPercentSum = 0;
+      var equityPercentCount = 0;
+      var signingBonusSum = 0;
+      docs.forEach(function(offer) {
+        baseSalarySum += offer.baseSalary;
+        if (offer.equityAmount > 0) {
+          equityAmountSum += offer.equityAmount;
+          equityAmountCount += 1
+        }
+        if (offer.equityPercent > 0) {
+          equityPercentSum += offer.equityPercent;
+          equityPercentCount += 1
+        }
+        signingBonusSum += offer.signingBonus;
+      });
+      res.send({
+        status: 'success',
+        averages: {
+          baseSalaryAverage: (baseSalarySum/docs.length),
+          equityAmountAverage: equityAmountCount >= 10 ? (equityAmountSum/equityAmountCount) : null,
+          equityPercentAverage: equityPercentCount >= 10 ? (equityPercentSum/equityPercentCount) : null,
+          signingBonusAverage: (signingBonusSum/docs.length)
+        }
+      });
+    }
+  });
+});
+
 module.exports = router;

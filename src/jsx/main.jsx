@@ -13,7 +13,7 @@ var Container = React.createClass({
   },
 
   componentDidMount: function() {
-    this.serverRequest = $.get('/auth', function (res) {
+    $.get('/auth', function (res) {
       this.setState({
         isAuthenticated: res.isAuthenticated,
         showSurvey: res.showSurvey
