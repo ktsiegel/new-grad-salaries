@@ -21,6 +21,7 @@ var SurveyModal = React.createClass({
       company: '',
       companyType: '',
       positionType: '',
+      position: '',
       baseSalary: '',
       signingBonus: '',
       equityPercent: '',
@@ -77,14 +78,23 @@ var SurveyModal = React.createClass({
     } else {
       newState.companyTypeValid = null;
     }
-    if (this.state.positionType.length < 2) {
+    if (OfferInfo.position.map(p => p.name).indexOf(this.state.positionType) == -1) {
       newState.positionTypeValid = {
+        status: 'error',
+        message: 'Invalid position type choice.'
+      };
+      invalidFields.push('Position type');
+    } else {
+      newState.positionTypeValid = null;
+    }
+    if (this.state.position.length < 2) {
+      newState.positionValid = {
         status: 'error',
         message: 'Invalid position name length.'
       };
       invalidFields.push('Position');
     } else {
-      newState.positionTypeValid = null;
+      newState.positionValid = null;
     }
     if (!$.isNumeric(this.state.baseSalary) || this.state.baseSalary.length == 0) {
       newState.baseSalaryValid = {
@@ -148,6 +158,7 @@ var SurveyModal = React.createClass({
       gender: this.state.gender,
       company: this.state.company,
       companyType: this.state.companyType,
+      position: this.state.position,
       positionType: this.state.positionType,
       baseSalary: this.state.baseSalary,
       signingBonus: this.state.signingBonus,
@@ -215,7 +226,13 @@ var SurveyModal = React.createClass({
             validationState={this.state.companyTypeValid}/>
           <FormInput
             label='Position'
-            onChange={val => this.setState({positionType: val})}
+            onChange={val => this.setState({position: val})}
+            validationState={this.state.positionValid}/>
+          <FormDropdown
+            label='Position Type'
+            options={OfferInfo.position.map(p => p.name)}
+            keyName='positiontype'
+            onChange={val => this.setState({positionType:val})}
             validationState={this.state.positionTypeValid}/>
           <FormInput
             label='Base Salary'

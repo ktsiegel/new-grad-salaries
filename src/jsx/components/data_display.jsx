@@ -12,6 +12,7 @@ var DataDisplay = React.createClass({
     return {
       ethnicity: null,
       gender: null,
+      positionType: null,
       companyType: null,
       location: null,
       averages: {
@@ -43,6 +44,7 @@ var DataDisplay = React.createClass({
     $.get('/averages', {
       ethnicity: state.ethnicity,
       gender: state.gender,
+      positionType: state.positionType,
       companyType: state.companyType,
       location: state.location
     }).done(function( data ) {
@@ -66,16 +68,22 @@ var DataDisplay = React.createClass({
     var optionButtons = [];
     var selected = this.state[key];
     options.forEach(function(option, index) {
+      var name = option;
+      var displayName = option;
+      if (typeof option == 'object') {
+        name = option.name;
+        displayName = option.abbreviation;
+      }
       var className = '';
-      if (selected == option) {
+      if (selected == name) {
         className = 'active';
       }
       optionButtons.push(
         <Button
           className={className}
           key={key + '-' + index}
-          onClick={that.updateParameter.bind(null, key, option)}>
-          {option}
+          onClick={that.updateParameter.bind(null, key, name)}>
+          {displayName}
         </Button>);
     });
     return (
@@ -90,7 +98,8 @@ var DataDisplay = React.createClass({
   render: function() {
     var ethnicityButtons = this.renderButtonGroup(OfferInfo.ethnicity.slice(0,-2), 'ethnicity');
     var genderButtons = this.renderButtonGroup(OfferInfo.gender.slice(0,-1), 'gender');
-    var companyButtons = this.renderButtonGroup(OfferInfo.company.map(c => c.abbreviation), 'companyType');
+    var positionButtons = this.renderButtonGroup(OfferInfo.position, 'positiontype');
+    var companyButtons = this.renderButtonGroup(OfferInfo.company, 'companytype');
     var locationButtons = this.renderButtonGroup(OfferInfo.loc.slice(0,-1), 'location');
     var noDataBody = 'Not enough data. To protect anonymity, we do not display averages of data subsets with too few data points.';
 
@@ -126,6 +135,7 @@ var DataDisplay = React.createClass({
         </div>
         <div id='filter-button-groups'>
           <FilterButtons title='Company Type' buttons={companyButtons}/>
+          <FilterButtons title='Position Type' buttons={positionButtons}/>
           <FilterButtons title='Location' buttons={locationButtons}/>
           <FilterButtons title='Gender' buttons={genderButtons}/>
           <FilterButtons title='Ethnicity' buttons={ethnicityButtons}/>

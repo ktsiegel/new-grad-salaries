@@ -7,6 +7,7 @@ var OfferSchema = mongoose.Schema({
   company: String,
   companyType: String,
   position: String,
+  positionType: String,
   baseSalary: Number,
   signingBonus: Number,
   equityPercent: Number,

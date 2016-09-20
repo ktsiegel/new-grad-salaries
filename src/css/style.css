@@ -44,7 +44,7 @@ p.p-modal {
   margin-right: 10px;
 }
 
-#ethnicity-dropdown, #gender-dropdown, #companytype-dropdown, #location-dropdown {
+#ethnicity-dropdown, #gender-dropdown, #companytype-dropdown, #location-dropdown, #positiontype-dropdown {
   width: 100%;
   text-align: left;
 }

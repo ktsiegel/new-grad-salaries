@@ -90,6 +90,9 @@ router.get('/averages', function(req, res, next) {
   if (req.body.gender) {
     params['gender'] = req.body.gender;
   }
+  if (req.body.positionType) {
+    params['positionType'] = req.body.positionType;
+  }
   if (req.body.companyType) {
     params['companyType'] = req.body.companyType;
   }
