@@ -84,20 +84,20 @@ router.post('/submit', function(req, res, next) {
 
 router.get('/averages', function(req, res, next) {
   params = {};
-  if (req.body.ethnicity) {
-    params['ethnicity'] = req.body.ethnicity;
+  if (req.query.ethnicity) {
+    params['ethnicity'] = req.query.ethnicity;
   }
-  if (req.body.gender) {
-    params['gender'] = req.body.gender;
+  if (req.query.gender) {
+    params['gender'] = req.query.gender;
   }
-  if (req.body.positionType) {
-    params['positionType'] = req.body.positionType;
+  if (req.query.positionType) {
+    params['positionType'] = req.query.positionType;
   }
-  if (req.body.companyType) {
-    params['companyType'] = req.body.companyType;
+  if (req.query.companyType) {
+    params['companyType'] = req.query.companyType;
   }
-  if (req.body.location) {
-    params['companyLocation'] = req.body.location;
+  if (req.query.location) {
+    params['companyLocation'] = req.query.location;
   }
   Offer.find(params, function(err, docs) {
     if (err) {

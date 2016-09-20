@@ -89,6 +89,7 @@ h3 {
   padding: 10px;
   display: table-cell;
   vertical-align: middle;
+  width: inherit;
 }
 .stat-box-content {
   margin: auto;
