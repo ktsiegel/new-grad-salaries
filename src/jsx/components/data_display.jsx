@@ -4,6 +4,8 @@ var Bootstrap = require('react-bootstrap');
 var Button = Bootstrap.Button;
 var ButtonToolbar = Bootstrap.ButtonToolbar;
 var ButtonGroup = Bootstrap.ButtonGroup;
+var StatBox = require('./stat_box.jsx');
+var FilterButtons = require('./filter_buttons.jsx');
 
 var DataDisplay = React.createClass({
   getInitialState: function() {
@@ -78,11 +80,9 @@ var DataDisplay = React.createClass({
     });
     return (
       <div>
-        <ButtonToolbar>
-          <ButtonGroup>
-            {optionButtons}
-          </ButtonGroup>
-        </ButtonToolbar>
+        <ButtonGroup>
+          {optionButtons}
+        </ButtonGroup>
       </div>
     );
   },
@@ -92,54 +92,43 @@ var DataDisplay = React.createClass({
     var genderButtons = this.renderButtonGroup(OfferInfo.gender.slice(0,-1), 'gender');
     var companyButtons = this.renderButtonGroup(OfferInfo.company.map(c => c.abbreviation), 'companyType');
     var locationButtons = this.renderButtonGroup(OfferInfo.loc.slice(0,-1), 'location');
-    var noDataDisplay = (
-      <div>
-        <p><b>Not enough data.</b> To protect anonymity, we do not display averages of data subsets with too few data points.</p>
-      </div>
-    );
+    var noDataBody = 'Not enough data. To protect anonymity, we do not display averages of data subsets with too few data points.';
 
-    var baseSalaryDisplay = noDataDisplay;
+    var baseSalaryBody = noDataBody;
     if (this.state.averages.baseSalaryAverage) {
-      baseSalaryDisplay = (<p>{this.state.averages.baseSalaryAverage}</p>);
+      baseSalaryBody = '$' + this.state.averages.baseSalaryAverage;
     }
-    var signingBonusDisplay = noDataDisplay;
+    var signingBonusBody = noDataBody;
     if (this.state.averages.signingBonusAverage) {
-      signingBonusDisplay = (<p>{this.state.averages.signingBonusAverage}</p>);
+      signingBonusBody = '$' + this.state.averages.signingBonusAverage;
     }
-    var equityDisplay = noDataDisplay;
+    var equityBody = noDataBody;
     var equityStr = '';
     if (this.state.averages.equityPercentAverage) {
-      equityStr += this.state.averages.equityPercentAverage;
+      equityStr += (this.state.averages.equityPercentAverage + '%');
       if (this.state.averages.equityAmountAverage) {
         equityStr += ' or ';
       }
     }
     if (this.state.averages.equityAmountAverage) {
-      equityStr += this.state.averages.equityAmountAverage;
+      equityStr += ('$' + this.state.averages.equityAmountAverage);
     }
     if (equityStr != '') {
-      equityDisplay = <p>{equityStr}</p>
+      equityBody = equityStr
     }
         
     return (
       <div id='data-display-wrapper'>
-        <div id='average-info'>
-          <h2>Average base salary</h2>
-          {baseSalaryDisplay}
-          <h2>Average signing bonus</h2>
-          {signingBonusDisplay}
-          <h2>Average equity</h2>
-          {equityDisplay}
+        <div id='stat-boxes' className='row'>
+          <StatBox title='Average base salary' body={baseSalaryBody} offset={true}/>
+          <StatBox title='Average signing bonus' body={signingBonusBody}/>
+          <StatBox title='Average equity' body={equityBody}/>
         </div>
         <div id='filter-button-groups'>
-          <h2>Company Type</h2>
-          {companyButtons}
-          <h2>Location</h2>
-          {locationButtons}
-          <h2>Gender</h2>
-          {genderButtons}
-          <h2>Ethnicity</h2>
-          {ethnicityButtons}
+          <FilterButtons title='Company Type' buttons={companyButtons}/>
+          <FilterButtons title='Location' buttons={locationButtons}/>
+          <FilterButtons title='Gender' buttons={genderButtons}/>
+          <FilterButtons title='Ethnicity' buttons={ethnicityButtons}/>
         </div>
       </div>
     );

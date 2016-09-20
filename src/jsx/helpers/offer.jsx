@@ -15,6 +15,21 @@ const gender_options = [
   'Prefer not to answer'
 ];
 
+const position_options = [
+  {
+    name: 'Technical position (engineering or quantitative role)',
+    abbreviation: 'Technical (engineering/quantitative)'
+  },
+  {
+    name: 'Semi-technical position (e.g. PM, product design)',
+    abbreviation: 'Semi-technical (PM, product design, etc.)'
+  },
+  {
+    name: 'Non-technical position (e.g. sales, marketing, operations)',
+    abbreviation: 'Non-technical'
+  }
+];
+
 const company_options = [
   {
     name: 'Publicly traded, large tech company (e.g. Google, Facebook, Oracle)',
@@ -43,7 +58,7 @@ const company_options = [
 ];
 
 const loc_options = [
-  'San Francisco',
+  'San Francisco/Bay Area',
   'New York City',
   'Seattle',
   'Boston',
@@ -56,6 +71,7 @@ const loc_options = [
 const Options = {
   ethnicity: ethnicity_options,
   gender: gender_options,
+  position: position_options,
   company: company_options,
   loc: loc_options
 }

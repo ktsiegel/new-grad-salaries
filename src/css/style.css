@@ -1,5 +1,6 @@
-body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+body, html {
+  font: 14px;
+  font-family: 'Roboto', sans-serif !important;
 }
 
 a {
@@ -12,7 +13,7 @@ a {
 }
 
 #take-survey-btn {
-  margin-top: 8px;
+  margin-top: 9px;
 }
 
 #login-with-fb-btn {
@@ -71,4 +72,46 @@ p.p-modal {
 
 .error-color {
   color: #a94442 !important;
+}
+
+h3 {
+  font-weight: 700 !important;
+}
+
+.stat-box-container {
+  padding: 10px;
+  height: 250px;
+}
+.stat-box {
+  border: 1px black solid;
+  border-radius: 10px;
+  height: 250px;
+  padding: 10px;
+  display: table-cell;
+  vertical-align: middle;
+}
+.stat-box-content {
+  margin: auto;
+  text-align: center;
+}
+h3.stat-box-title {
+  margin-top: 0px;
+  margin-bottom: 10px;
+  font-size:20px;
+}
+.stat-box-body {
+}
+#stat-boxes {
+  margin: 15px;
+}
+
+#filter-button-groups {
+  margin-top:20px;
+}
+.filter-buttons-container {
+  text-align: center;
+}
+h3.filter-title {
+  font-size: 16px;
+  margin-top: 30px;
 }
