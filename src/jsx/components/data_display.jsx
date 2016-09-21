@@ -4,6 +4,8 @@ var Bootstrap = require('react-bootstrap');
 var Button = Bootstrap.Button;
 var ButtonToolbar = Bootstrap.ButtonToolbar;
 var ButtonGroup = Bootstrap.ButtonGroup;
+var Popover = Bootstrap.Popover;
+var OverlayTrigger = Bootstrap.OverlayTrigger;
 var StatBox = require('./stat_box.jsx');
 var FilterButtons = require('./filter_buttons.jsx');
 
@@ -15,6 +17,7 @@ var DataDisplay = React.createClass({
       positionType: null,
       companyType: null,
       location: null,
+      university: null,
       averages: {
         baseSalaryAverage: 0,
         equityAmountAverage: 0,
@@ -22,6 +25,10 @@ var DataDisplay = React.createClass({
         signingBonusAverage: 0
       }
     };
+  },
+
+  componentWillMount: function() {
+    this.fetchPopularUniversities();
   },
 
   componentDidMount: function() {
@@ -46,7 +53,8 @@ var DataDisplay = React.createClass({
       gender: state.gender,
       positionType: state.positionType,
       companyType: state.companyType,
-      location: state.location
+      location: state.location,
+      university: state.university
     }).done(function( data ) {
       if (data.averages != null) {
         that.setState({averages: data.averages});
@@ -60,6 +68,13 @@ var DataDisplay = React.createClass({
           }
         });
       }
+    });
+  },
+
+  fetchPopularUniversities: function() {
+    var that = this;
+    $.get('/universities', function(data) {
+      that.setState({universities: data.universities});
     });
   },
 
@@ -101,6 +116,7 @@ var DataDisplay = React.createClass({
     var positionButtons = this.renderButtonGroup(OfferInfo.position, 'positionType');
     var companyButtons = this.renderButtonGroup(OfferInfo.company, 'companyType');
     var locationButtons = this.renderButtonGroup(OfferInfo.loc.slice(0,-1), 'location');
+    var universityButtons = this.state.universities ? this.renderButtonGroup(this.state.universities, 'university') : null;
     var noDataBody = 'Not enough data. To protect anonymity, we do not display averages of data subsets with too few data points.';
 
     var baseSalaryBody = noDataBody;
@@ -126,6 +142,19 @@ var DataDisplay = React.createClass({
       equityBody = equityStr
     }
         
+    var universityFilterButtons = null;
+    if (universityButtons) {
+      var icon = (<i className='fa fa-question-circle-o' id='question-button'  aria-hidden='true'></i>);
+      var popoverRight = (<Popover id='popover-positioned-right'>
+        As more data is collected, universities with significant representation will appear in this list. Underrepresented universities are not shown for privacy reasons.
+      </Popover>);
+      var popoverButton = (
+        <OverlayTrigger trigger='click' placement='right' overlay={popoverRight}>
+          {icon}
+        </OverlayTrigger>
+      );
+      universityFilterButtons = (<FilterButtons title='University' buttons={universityButtons} icon={popoverButton}/>);
+    }
     return (
       <div id='data-display-wrapper'>
         <div id='stat-boxes' className='row'>
@@ -139,6 +168,7 @@ var DataDisplay = React.createClass({
           <FilterButtons title='Location' buttons={locationButtons}/>
           <FilterButtons title='Gender' buttons={genderButtons}/>
           <FilterButtons title='Ethnicity' buttons={ethnicityButtons}/>
+          {universityFilterButtons}
         </div>
       </div>
     );

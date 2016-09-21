@@ -99,6 +99,9 @@ router.get('/averages', function(req, res, next) {
   if (req.query.location) {
     params['companyLocation'] = req.query.location;
   }
+  if (req.query.university) {
+    params['university'] = req.query.university;
+  }
   Offer.find(params, function(err, docs) {
     if (err) {
       res.send({
@@ -141,5 +144,31 @@ router.get('/averages', function(req, res, next) {
     }
   });
 });
+
+router.get('/universities', function(req, res, next) {
+  Offer.find({}, function(err, docs) {
+    var universities = {};
+    docs.forEach(function(doc) {
+      var university = doc.university;
+      if (!universities[university]) {
+        universities[university] = 0;
+      }
+      universities[university] += 1;
+    });
+    var popularUniversities = [];
+    for (var u in universities) {
+      if (!universities.hasOwnProperty(u)) continue;
+      var count = universities[u];
+      if (count >= 10) {
+        popularUniversities.push(u);
+      }
+    }
+    res.send({
+      status: 'success',
+      universities: popularUniversities
+    });
+  });
+});
+
 
 module.exports = router;
