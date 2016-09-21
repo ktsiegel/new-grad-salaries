@@ -50,6 +50,9 @@ var Container = React.createClass({
         </div>
         {modal}
         <DataDisplay />
+        <div id='footer' className='navbar navbar-default'>
+          Contribute to the project on GitHub <a href='https://github.com/kathrynsiegel/new-grad-salaries'>here</a>.
+        </div>
       </div>
     );
   }
