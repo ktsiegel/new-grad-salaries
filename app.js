@@ -31,7 +31,19 @@ if (app.get('env') === 'development') {
   }
   ));
 } else {
-  console.err("ERROR: bad authentication");
+  // TODO(katie) dedup this with above
+  passport.use(new FacebookStrategy({
+    clientID: config['production'].FACEBOOK_APP_ID,
+    clientSecret: config['production'].FACEBOOK_APP_SECRET,
+    callbackURL: config['production'].HOST + "auth/facebook/callback",
+    profileFields: ['id', 'displayName', 'email']
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    User.findOrCreate({ facebookId: profile.id, email: profile.email }, function (err, user) {
+      return cb(err, user);
+    });
+  }
+  ));
 }
 
 passport.serializeUser(function(user, cb) {
