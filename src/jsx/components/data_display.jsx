@@ -103,9 +103,7 @@ var DataDisplay = React.createClass({
     });
     return (
       <div>
-        <ButtonGroup>
-          {optionButtons}
-        </ButtonGroup>
+        {optionButtons}
       </div>
     );
   },

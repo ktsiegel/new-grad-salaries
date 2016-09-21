@@ -8,7 +8,7 @@ var StatBox = React.createClass({
   },
 
   render: function() {
-    className = 'stat-box-container col-lg-2 col-sm-4';
+    className = 'stat-box-container col-lg-2 col-xs-4';
     if (this.props.offset) {
       className += ' col-lg-offset-3';
     }
