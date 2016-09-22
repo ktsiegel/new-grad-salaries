@@ -190,6 +190,9 @@ var SurveyModal = React.createClass({
       <p className='p-modal'>
         Note: Facebook authentication is used to prevent duplicate responses. Your identification information will never be shown in association with your survey response.
       </p>
+      <p className='p-modal'>
+        To protect privacy, we only show cohort averages when there are a significant number of responses within that cohort.
+      </p>
     </Modal.Body>);
   },
 
