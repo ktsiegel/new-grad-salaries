@@ -97,7 +97,7 @@ router.get('/averages', function(req, res, next) {
     params['companyType'] = req.query.companyType;
   }
   if (req.query.location) {
-    params['companyLocation'] = req.query.location;
+    params['location'] = req.query.location;
   }
   if (req.query.university) {
     params['university'] = req.query.university;

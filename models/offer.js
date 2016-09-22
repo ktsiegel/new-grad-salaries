@@ -12,7 +12,7 @@ var OfferSchema = mongoose.Schema({
   signingBonus: Number,
   equityPercent: Number,
   equityAmount: Number,
-  companyLocation: String
+  location: String
 });
 
 var Offer = mongoose.model('Offer', OfferSchema);
