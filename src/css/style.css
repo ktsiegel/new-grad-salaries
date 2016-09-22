@@ -14,6 +14,7 @@ a {
 
 #take-survey-btn {
   margin-top: 9px;
+  margin-right: 5px;
 }
 
 #login-with-fb-btn {
@@ -127,4 +128,14 @@ h3.filter-title {
   margin-bottom: 0px;
   padding-top: 20px;
   padding-bottom: 20px;
+}
+
+#show-modal-link {
+  padding: 0px;
+  position: relative;
+  top: -1px;
+}
+
+#blurb-div {
+  text-align:center;
 }

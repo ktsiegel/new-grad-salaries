@@ -17,35 +17,19 @@ var app = express();
 ////////////////////////////////////////////
 //AUTHENTICATION
 ///////////////////////////////////////////
-if (app.get('env') === 'development') {
-  passport.use(new FacebookStrategy({
-    clientID: config['development'].FACEBOOK_APP_ID,
-    clientSecret: config['development'].FACEBOOK_APP_SECRET,
-    callbackURL: "http://localhost:3000/auth/facebook/callback",
-    profileFields: ['id', 'displayName', 'email']
-  },
-  function(accessToken, refreshToken, profile, cb) {
-    User.findOrCreate({ facebookId: profile.id, email: profile.email }, function (err, user) {
-      return cb(err, user);
-    });
-  }
-  ));
-} else {
-  // TODO(katie) dedup this with above
-  passport.use(new FacebookStrategy({
-    clientID: config['production'].FACEBOOK_APP_ID,
-    clientSecret: config['production'].FACEBOOK_APP_SECRET,
-    callbackURL: config['production'].HOST + "auth/facebook/callback",
-    profileFields: ['id', 'displayName', 'email']
-  },
-  function(accessToken, refreshToken, profile, cb) {
-    User.findOrCreate({ facebookId: profile.id, email: profile.email }, function (err, user) {
-      return cb(err, user);
-    });
-  }
-  ));
+passport.use(new FacebookStrategy({
+  clientID: config.FACEBOOK_APP_ID,
+  clientSecret: config.FACEBOOK_APP_SECRET,
+  callbackURL: config.HOST + "auth/facebook/callback",
+  profileFields: ['id', 'displayName', 'email']
+},
+function(accessToken, refreshToken, profile, cb) {
+  User.findOrCreate({ facebookId: profile.id, email: profile.email }, function (err, user) {
+    return cb(err, user);
+  });
 }
-
+));
+ 
 passport.serializeUser(function(user, cb) {
     cb(null, user);
 });
@@ -97,27 +81,12 @@ db.once('open', function() {
 //////////////////////////////////////////
 // ERROR HANDLERS
 /////////////////////////////////////////
-if (app.get('env') === 'development') {
-  // development error handler
-  // will print stacktrace
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
-    });
+app.use(function(err, req, res, next) {
+  res.status(err.status || 500);
+  res.render('error', {
+    message: err.message,
+    error: {}
   });
-} else {
-  // production error handler
-  // no stacktraces leaked to user
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: {}
-    });
-  });
-}
-
+});
 
 module.exports = app;

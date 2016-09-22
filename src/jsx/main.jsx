@@ -38,17 +38,20 @@ var Container = React.createClass({
       <div>
         <div className='navbar navbar-default'>
           <div className='container-fluid'>
-            <div className='navbar-header'>
+            <div className='navbar-header pull-left'>
               <a className='navbar-brand' href='#'>New-Grad Salaries</a>
             </div>
-            <div className='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
-              <ul className='nav navbar-nav navbar-right'>
-                <li><Button onClick={this.showSurveyModal} id='take-survey-btn'>Submit Data</Button></li>
-              </ul>
+            <div className='navbar-header pull-right'>
+               <Button onClick={this.showSurveyModal} id='take-survey-btn' className='btn-primary'>Submit Data</Button>
             </div>
           </div>
         </div>
         {modal}
+        <div id='blurb-div'>
+          <div className='col-sm-6 col-sm-offset-3'>
+            <p>You can use this dashboard to explore average compensation for different student demographics. However, you will note that the dataset is far from complete. To submit your information to the dataset, <Button bsStyle='link' onClick={this.showSurveyModal} id='show-modal-link'>click here</Button>.</p>
+          </div>
+        </div>
         <DataDisplay />
         <div id='footer' className='navbar navbar-default'>
           Contribute to the project on GitHub <a href='https://github.com/kathrynsiegel/new-grad-salaries'>here</a>.
