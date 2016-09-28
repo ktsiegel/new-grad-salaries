@@ -30,7 +30,7 @@ var Container = React.createClass({
   },
 
   render: function() {
-    let modal;
+    var modal = null;
     if (this.state.showSurvey) {
       modal = (<SurveyModal hideSurvey={this.hideSurveyModal} isAuthenticated={this.state.isAuthenticated}/>);
     }

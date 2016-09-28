@@ -8,6 +8,7 @@ var Popover = Bootstrap.Popover;
 var OverlayTrigger = Bootstrap.OverlayTrigger;
 var StatBox = require('./stat_box.jsx');
 var FilterButtons = require('./filter_buttons.jsx');
+var numeral = require('numeral');
 
 var DataDisplay = React.createClass({
   getInitialState: function() {
@@ -119,11 +120,11 @@ var DataDisplay = React.createClass({
 
     var baseSalaryBody = noDataBody;
     if (this.state.averages.baseSalaryAverage) {
-      baseSalaryBody = '$' + parseFloat(this.state.averages.baseSalaryAverage).toFixed(2);
+      baseSalaryBody = numeral(this.state.averages.baseSalaryAverage).format('$0,0.00');
     }
     var signingBonusBody = noDataBody;
     if (this.state.averages.signingBonusAverage) {
-      signingBonusBody = '$' + parseFloat(this.state.averages.signingBonusAverage).toFixed(2);
+      signingBonusBody = numeral(this.state.averages.signingBonusAverage).format('$0,0.00');
     }
     var equityBody = noDataBody;
     var equityStr = '';
@@ -134,7 +135,7 @@ var DataDisplay = React.createClass({
       }
     }
     if (this.state.averages.equityAmountAverage) {
-      equityStr += ('$' + parseFloat(this.state.averages.equityAmountAverage).toFixed(2));
+      equityStr += numeral(this.state.averages.equityAmountAverage).format('$0,0.00');
     }
     if (equityStr != '') {
       equityBody = equityStr

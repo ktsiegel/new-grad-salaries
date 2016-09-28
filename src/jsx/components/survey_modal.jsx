@@ -69,7 +69,7 @@ var SurveyModal = React.createClass({
     } else {
       newState.companyValid = null;
     }
-    if (OfferInfo.company.map(c => c.name).indexOf(this.state.companyType) == -1) {
+    if (OfferInfo.company.map(function(c) {return c.name;}).indexOf(this.state.companyType) == -1) {
       newState.companyTypeValid = {
         status: 'error',
         message: 'Invalid company type choice.'
@@ -78,7 +78,7 @@ var SurveyModal = React.createClass({
     } else {
       newState.companyTypeValid = null;
     }
-    if (OfferInfo.position.map(p => p.name).indexOf(this.state.positionType) == -1) {
+    if (OfferInfo.position.map(function(p) {return p.name;}).indexOf(this.state.positionType) == -1) {
       newState.positionTypeValid = {
         status: 'error',
         message: 'Invalid position type choice.'
@@ -202,62 +202,62 @@ var SurveyModal = React.createClass({
         <form>
           <FormInput
             label='University'
-            onChange={val => this.setState({university:val})}
+            onChange={function(val) {this.setState({university:val});}}
             validationState={this.state.universityValid}/>
           <FormDropdown
             label='Ethnicity'
             options={OfferInfo.ethnicity}
             keyName='ethnicity'
-            onChange={val => this.setState({ethnicity:val})}
+            onChange={function(val) {this.setState({ethnicity:val});}}
             validationState={this.state.ethnicityValid}/>
           <FormDropdown
             label='Gender'
             options={OfferInfo.gender}
             keyName='gender'
-            onChange={val => this.setState({gender:val})}
+            onChange={function(val) {this.setState({gender:val});}}
             validationState={this.state.genderValid}
           />
           <FormInput
             label='Company'
-            onChange={val => this.setState({company:val})}
+            onChange={function(val) {this.setState({company:val});}}
             validationState={this.state.companyValid}/>
           <FormDropdown
             label='Company Type'
-            options={OfferInfo.company.map(c => c.name)}
+            options={OfferInfo.company.map(function(c){return c.name})}
             keyName='companytype'
-            onChange={val => this.setState({companyType:val})}
+            onChange={function(val){this.setState({companyType:val});}}
             validationState={this.state.companyTypeValid}/>
           <FormInput
             label='Position'
-            onChange={val => this.setState({position: val})}
+            onChange={function(val) {this.setState({position: val});}}
             validationState={this.state.positionValid}/>
           <FormDropdown
             label='Position Type'
-            options={OfferInfo.position.map(p => p.name)}
+            options={OfferInfo.position.map(function(p) {return p.name;})}
             keyName='positiontype'
-            onChange={val => this.setState({positionType:val})}
+            onChange={function(val) {this.setState({positionType:val});}}
             validationState={this.state.positionTypeValid}/>
           <FormInput
             label='Base Salary'
-            onChange={val => this.setState({baseSalary: val})}
+            onChange={function(val) {this.setState({baseSalary: val});}}
             validationState={this.state.baseSalaryValid}
             placeholder='e.g. 100000, 125000, etc.'
             before='$'/>
           <FormInput
             label='Signing Bonus'
-            onChange={val => this.setState({signingBonus: val})}
+            onChange={function(val) {this.setState({signingBonus: val});}}
             validationState={this.state.signingBonusValid}
             placeholder='e.g. 5000, 10000, etc.'
             before='$'/>
           <FormInput
             label='Equity Percent'
-            onChange={val => this.setState({equityPercent: val})}
+            onChange={function(val) {this.setState({equityPercent: val});}}
             validationState={this.state.equityPercentValid}
             placeholder='(optional)'
             after='%'/>
           <FormInput
             label='Equity Amount'
-            onChange={val => this.setState({equityAmount: val})}
+            onChange={function(val) {this.setState({equityAmount: val});}}
             validationState={this.state.equityAmountValid}
             placeholder='(optional)'
             before='$'/>
@@ -265,7 +265,7 @@ var SurveyModal = React.createClass({
             label='Company Location'
             options={OfferInfo.loc}
             keyName='location'
-            onChange={val => this.setState({companyLocation: val})}
+            onChange={function(val) {this.setState({companyLocation: val});}}
             validationState={this.state.companyLocationValid}/>
         </form>
       </Modal.Body>
